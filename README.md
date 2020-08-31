@@ -406,4 +406,4 @@ Zanang Dangata worked on the API and the test suite to integrate with the fronte
 ## Acknowledgements
 Shout out to my mentor, Jonathan Carrol for guiding me through this process.
 
-I also want to thank Nicolas Georgiou, James Wilson and Duncan Bailey for their support in this assignment.
+I would also like to thank Nicolas Georgiou, Andrew Muir, James Wilson, and Duncan Bailey for their support in this assignment.
