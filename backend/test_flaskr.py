@@ -41,6 +41,8 @@ class TriviaTestCase(unittest.TestCase):
     TODO
     Write at least one test for each test for successful operation and for expected errors.
     """
+
+    #NOTE-This test code was taken and adapted from the code in the 2nd video in lesson 4 (https://youtu.be/z-3KvxWaQLs) from time 0:12 secs. 
     #test for successful get request in questions
     def test_get_paginated_questions(self):
         res = self.client().get('/questions')
@@ -51,6 +53,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
         self.assertTrue(len(data['questions']))
 
+    #NOTE-This test code was taken and adapted from the code in the 2nd video in lesson 4 (https://youtu.be/z-3KvxWaQLs) from time 1:03 secs.
     #test for get request error behaviour in questions
     def test_404_sent_requesting_beyond_valid_page(self):
         res = self.client().get('/questions?page=1000')
@@ -60,6 +63,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'resource not found')
     
+    #NOTE-This test code was taken and adapted from the code in the 2nd video in lesson 4 (https://youtu.be/z-3KvxWaQLs) from time 0:12 secs.  
     #test for successful get request in categories
     def test_get_categories(self):
         res = self.client().get('/categories')
@@ -70,6 +74,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_categories'])
         self.assertTrue(len(data['categories']))
 
+    #NOTE-This test code was taken, adapted and based on principles from the code in the 2nd video in lesson 4 (https://youtu.be/z-3KvxWaQLs) from time 1:03 secs. 
     #test for get request error behaviour in categories
     def test_404_sent_requesting_beyond_valid_id(self):
         res = self.client().get('/categories/1000')
@@ -101,6 +106,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'unprocessable entity')
 
+    #NOTE-This test code was taken and adapted from the code in the 3rd video in lesson 4 (https://youtu.be/r6KHb1nS9Dc) from time 3:14 secs.  
     #test for creation of new question
     def test_create_new_question(self):
         res = self.client().post('/questions', json=self.new_question)
@@ -111,6 +117,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['created'])
         self.assertTrue(len(data['questions']))
 
+    #NOTE-This test code was taken and adapted from the code in the 3rd video in lesson 4 (https://youtu.be/r6KHb1nS9Dc) from time 3:50 secs.  
     #test for question creation which is not allowed
     def test_405_if_question_creation_not_allowed(self):
         res = self.client().post('questions/1000', json=self.new_question)
@@ -153,7 +160,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
         self.assertEqual(data['current_category'], 1)
 
-    #test for getting question 
+    #test for getting question from non-existant category
     def test_get_questions_for_invalid_category(self):
         res = self.client().get('/categories/8/questions', json={'category': 8})
         data = json.loads(res.data)
